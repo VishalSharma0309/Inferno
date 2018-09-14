@@ -1,1 +1,10 @@
-The working of rover drive system
+The working of rover drive system:
+
+The drive system of rover is controlled wirelessly and consists of 6 motors controled individually. 
+The motor used is planetary high torque, high rpm geared DC motor.
+The main central processing unit on the rover is RaspberryPi 3B+. 
+Each motor has an individual encoder which forms the feedback system of the motor and a motor driver which can control two motors at the same time.
+Motor drivers are connected to an arduino mega which in turn is connected to the RaspberryPi from which it recieves instructions.
+PWM pins are used to control the rpm of the motors in order to move the rover as desired.
+The RaspberryPi is remotely connected to a computer at the base staton through wireless SSH.
+Range of this connection is extended using a Rocket M5.
