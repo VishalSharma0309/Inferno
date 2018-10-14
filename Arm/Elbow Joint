@@ -62,7 +62,7 @@ int c;
 
 Serial.println("Angle ??");
 
-while(Serial.available() == 0) { }  // There really is nothing between the {} braces
+while(!Serial.available());  // There really is nothing between the {} braces
 
 x = Serial.parseInt(); 
 Serial.println(x);
