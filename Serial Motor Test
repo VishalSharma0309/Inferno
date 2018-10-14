@@ -1,4 +1,4 @@
-
+//Not in use(for now)
 
 #include <SoftwareSerial.h>
 // software serial #1: RX = digital pin 10, TX = digital pin 11
