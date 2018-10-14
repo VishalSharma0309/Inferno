@@ -1,0 +1,134 @@
+
+
+int In1 = 1;
+int In2 = 2;
+
+int y ;
+int z ;
+
+float p ;
+
+
+
+void setup() {
+
+Serial.begin(9600);
+
+pinMode(A1,INPUT);
+
+pinMode(6,OUTPUT);
+
+
+}
+
+int checkPot(){
+  y = analogRead(A1);
+  z = map(y,0,1023,0,300); /*maps value from potentiometer to the mechanical angle of shaft */
+  return(z);
+
+}
+
+
+void brake(){
+
+digitalWrite(2,LOW);
+digitalWrite(3,LOW);
+  
+}
+
+void forward(){
+  digitalWrite(3,LOW);
+  digitalWrite(2,HIGH);
+  analogWrite(6,255);
+}
+
+
+void backward(){
+  digitalWrite(3,HIGH);
+  digitalWrite(2,LOW);
+  analogWrite(6,255);
+ }
+ 
+ 
+void loop() {
+  
+int Error ;
+  
+int  x ;
+
+int modError ;
+
+int c;
+
+Serial.println("Angle ??");
+
+while(Serial.available() == 0) { }  // There really is nothing between the {} braces
+
+x = Serial.parseInt(); 
+Serial.println(x);
+while(1){
+
+c = checkPot();
+
+Serial.println(c);
+
+Error = c - x ;
+
+Serial.println(Error);
+
+modError = abs(c-x);
+
+while(!(modError<5)){
+
+
+
+  if(c<x-5){
+
+    forward();
+    Serial.println("going forward");
+    delay(100);
+
+    c = checkPot();
+
+    modError = abs(c-x);
+  }
+
+  else if(c>x+5){
+
+    backward();
+    Serial.println("going backward");
+    delay(100);
+
+    c = checkPot();
+
+    modError = abs(c-x);
+  }
+
+  c = checkPot();
+
+  modError = abs(c-x);
+
+}
+
+brake();
+
+c = checkPot();
+
+modError = abs(c-x);
+
+delay(100);
+
+if(modError<5){
+  Serial.println("Angle ??");
+
+   while(Serial.available() == 0) { }  // There really is nothing between the {} braces
+  
+  x = Serial.parseInt(); 
+  
+  Serial.println(x);
+  break ;
+}
+
+}
+
+}
