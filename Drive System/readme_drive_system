@@ -7,4 +7,8 @@ Each motor has an individual encoder which forms the feedback system of the moto
 Motor drivers are connected to an arduino mega which in turn is connected to the RaspberryPi from which it recieves instructions.
 PWM pins are used to control the rpm of the motors in order to move the rover as desired.
 The RaspberryPi is remotely connected to a computer at the base staton through wireless SSH.
-Range of this connection is extended using a Rocket M5.
+Range of this connection is extended using a Rocket M2.
+The drive system uses a distributed motor control of 6 individual motors, with 3 individual intelligent motor drivers to control the motors. The aim is to integrate the entire drive system with ROS framework.
+The rover uses DC Brushed motors. The intelligent drivers used in our Rover provide it with reasonable speed and torque to navigate through extreme terrains. 24v motors have been used that provide up to 5Nm torque and around 200 maximum rpm. This compliment, in conjunction to the rocker bogie system, allowed the Rover to climb steep slopes and travel tough terrains with ease. 
+The motors have been controlled via pulse width modulation signals sent through the microcontroller unit, i.e. Arduino. 
+The motor driver boards used feature dual NMOS H-Bridge circuits for efficient control over the direction of the motors. They support locked anti-phase and sign-magnitude pulse width modulation signals. Our drivers regenerate the battery when the motors accelerates or decelerates, increasing battery efficiency and reducing the heating of the motors. Full solid state components are used which result in faster response time and eliminate the wear and tear of the mechanical relay.
