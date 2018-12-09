@@ -1,81 +1,49 @@
 #include "Arduino.h"
 #include "Invkin.h"
-
-#include "Math.h"
-
-
-
-//int Invkin::angle[3];
-int Invkin::calctheta1(int x,int y, int z){
-
-  
-    int X = x;
-    
-    int Y = y;
-    
-    int Z = z;
-    
-    int theta1 = ((atan(Y/X))*180/(22/7));
-
-    return theta1 ;
-
+Invkin::Invkin(float X,float Y,float Z){
+   float x =  X ;
+   float y =  Y ;
+   float z =  Z ;
+   
+   const float cx=2; //coxa
+   const float fm=6.2; //femur
+   const float tb=8.3; // tibia 
+   
+   float L, L1;
+   float alpha, alpha1,alpha2,beta,gama;
 }
 
-
-int Invkin::calctheta2(int x,int y, int z){
+void Invkin::transform()
+{
     
+trigono_xyz(x,y,z); //contoh x,y,z
+Serial.print("gama= ");
+Serial.print(gama);
+Serial.print(", alpha= ");
+Serial.print(alpha);
+Serial.print(", beta= ");
+Serial.print(beta);
+Serial.println();
     
-    
-    int r3 ; 
-    
-    int X = x;
-    
-    int Y = y;
-    
-    int Z = z;
-    
-    r3 = sqrt(X*X + Y*Y + (Z-a1)*(Z-a1));
-
-    int theta2 = (atan((Z-a1)/(sqrt(X*X+Y*Y)))-acos((a2*a2 + r3*r3-a3*a3)/(2*a2*r3)))*180/(22/7);
-    
-   
-
-    return theta2 ;
-
 }
 
-
-int Invkin::calctheta3(int x,int y, int z){
+void Invkin::trigono_xyz(float x, float y, float z)
+{
     
+ L1=sqrt(sq(x)+sq(y));
     
+ gama=atan(x/y)/PI*180;
     
-    int r3 ; 
+ L=sqrt(sq(L1-cx)+sq(z));
     
-    int X = x;
+ beta=acos((sq(tb)+sq(fm)-sq(L))/(2*tb*fm))/PI*180;
     
-    int Y = y;
+ alpha1=acos(z/L)/PI*180;
     
-    int Z = z;
+ alpha2=acos((sq(fm)+sq(L)-sq(tb))/(2*fm*L))/PI*180;
     
-    r3 = sqrt(X*X + Y*Y + (Z-a1)*(Z-a1));
-   
+ alpha=alpha1+alpha2;
     
-    int theta3 = ((22/7)- acos((a3*a3 + a2*a2 - r3*r3)/(2*a2*a3)))*180/(22/7);   
-   
-
-    return theta3 ;
+ 
+    
 }
-
-
-
-//int setRoboticArm(){
-    
-    
-//}
-
-
-
-
-
-    
-    

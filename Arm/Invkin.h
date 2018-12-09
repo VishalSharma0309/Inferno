@@ -1,35 +1,41 @@
-#ifndef Invkin_h 
+#ifndef Invkin_h
 
 #define Invkin_h
 
 
+
 #include "Arduino.h"
 
-class Invkin 
+
+
+class Invkin
+
 {
-    public:
+
+   public:
+   
+    Invkin(float,float,float);
+
+    void transform();    
     
-        
-       
-        int calctheta1(int  , int , int );
-        
-        int calctheta2(int  , int , int );
-        
-        int calctheta3(int  , int , int );
-        
-    private :
+    int alpha, alpha1,alpha2,beta,gamma;
     
-            int  a1 = 250;
+    
+    
+    private:
+    
+    void trigono_xyz(float x, float y, float z);
+    
+    const float cx=2; //cox a
+    const float fm=6.2; //femur
+    const float tb=8.3; // tibia
+    
+    float L, L1;
+    
 
-            int  a2 = 400;
-
-            int  a3 = 300;
-            
-            //SetRoboticArm();
-        
-        
-
+    
 };
 
-#endif
 
+
+#endif
