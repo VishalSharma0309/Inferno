@@ -1,0 +1,41 @@
+#include <ElbowMotor.h>
+#include <BaseMotor.h>
+
+
+ElbowMotor obj(6,5);
+
+BaseMotor obj2(2,4,3);
+
+void setup() {
+  // put your setup code here, to run once:
+
+  Serial.begin(9600);
+
+  
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+  Serial.print("angle");
+
+  while(!Serial.available()){}
+
+  obj.x = Serial.parseInt();
+
+  obj.errorcheck();
+
+
+  Serial.print("angle?");
+
+  while(!Serial.available()){}
+
+  obj2.x = Serial.read();
+
+  obj2.errorcheck();
+
+  
+  
+
+}

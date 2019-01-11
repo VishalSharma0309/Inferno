@@ -1,0 +1,32 @@
+//Not in use(for now)
+
+#include <SoftwareSerial.h>
+// software serial #1: RX = digital pin 10, TX = digital pin 11
+// I have Arduino Uno so I created extra RX and TX to send and receive data. 
+// Becuase using inbuilt RX0 and TX0, I was unable to transfer data to motor 
+// and get feedack in PC
+SoftwareSerial serial1(10,11); 
+
+void setup()
+{
+  Serial.begin(38400);
+  serial1.begin(38400);
+}
+
+void loop()
+{
+
+  if (Serial.available() > 0)
+  {
+    delay(5);
+    serial1.println(Serial.readString());
+  }
+
+
+  if (serial1.available() > 0)
+  {
+    delay(5);
+    Serial.println(serial1.readString());
+    delay(5);
+  }
+}
