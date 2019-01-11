@@ -131,12 +131,14 @@ void loop(){
               Serial.println("Burst backward");
               forward(rpm);
               delay(500);
+              stop();
       }
       //burst forward      
       if (dir == 'q'){
               Serial.println("Burst forward");
               backward(rpm);
               delay(500);
+              stop();
       }
       //backwards
       if (dir == 's'){
