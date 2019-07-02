@@ -7,10 +7,10 @@
 # ROS kinetic ONLY supports Wily (Ubuntu 15.10), Xenial (Ubuntu 16.04) and Jessie (Debian 8) for debian packages 
 
 #use sudo to run this command
-if [ "$(id -u)" -ne 0 ]
-        then echo "Must be root"
-        exit
-fi
+#if [ "$(id -u)" -ne 0 ]
+#        then echo "Must be root"
+#        exit
+#fi
 
 IP_CURR=hostname\ -I
  
